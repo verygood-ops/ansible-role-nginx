@@ -37,6 +37,7 @@
   when:
     - item.value | select('search','proxy_pass') | list | count > 0
     - item.value | select('search','resolver') | list | count == 0 or item.value | select('search','set') | list | count == 0
+    - item.value | select('search','serviceview-base2000.fnfis.com') | list | count == 0 # this does not work well with this endpoint only
   with_dict: "{{ nginx_sites }}"
   fail:
     msg: "proxy_pass bug found, check how to fix here: https://www.jethrocarr.com/2013/11/02/nginx-reverse-proxies-and-dns-resolution/"
